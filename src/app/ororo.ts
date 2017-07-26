@@ -218,7 +218,7 @@ export const ALLSHOWS: Show[] = [{
     "rating": "8.5",
     "year": "2014",
     "complexity": 90.4249970440316,
-    "info": "Comedy, US",
+    "info": "Comedy, US, RU",
     "popularity": 706
 }, {
     "title": "\nBreaking Bad\n<br>Во все тяжкие<br>\n",

@@ -1,48 +1,51 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ALLSHOWS} from './ororo';
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
-  title = 'Ороро рулетка';
-  subtitle = 'Если выбирать сериалы самому уже слишком тяжело';
-  version = 'Анечка edition';
-  shows = [];
-  selectedJanr = [];
+    title = 'Ороро рулетка';
+    subtitle = 'Если выбирать сериалы самому уже слишком тяжело';
+    version = 'Анечка edition';
+    yearFrom = 1700;
+    yearTo = 2018;
+    shows = [];
+    selectedJanr = [];
 
+    constructor() {
+        this.spin();
+    }
 
-  constructor() {
-      this.spin();
-  }
-  filterShows(): any {
-      return ALLSHOWS.filter(function (item) {
-          if (this.selectedJanr.length === 0) {
-              return true;
-          }
-          for (let entry of this.selectedJanr) {
-              if (item.info.indexOf(entry) !== -1) {
-                  return true;
-              }
-          }
-          return false;
-      }.bind(this));
-  }
-  spin(): void {
-    const len = 3;
-    const filtred = this.filterShows();
-    const max = filtred.length;
-    this.shows = [];
-    if (max === 0) {
-        return;
+    static shuffle(a): any {
+        for (let i = a.length; i; i--) {
+            let j = Math.floor(Math.random() * i);
+            [a[i - 1], a[j]] = [a[j], a[i - 1]];
+        }
+        return a;
     }
-    for (let i = 0; i < len; i++) {
-      const index = (Math.floor(Math.random() * (max - 1)));
-      this.shows.push(filtred[index]);
+
+    filterShows(): any {
+        return ALLSHOWS.filter(function (item) {
+            if (item.year > this.yearTo || item.year < this.yearFrom) {
+                return false;
+            }
+            if (this.selectedJanr.length === 0) {
+                return true;
+            }
+            for (let entry of this.selectedJanr) {
+                if (item.info.indexOf(entry) !== -1) {
+                    return true;
+                }
+            }
+            return false;
+        }.bind(this));
     }
-  }
+
+    spin(): void {
+        this.shows = AppComponent.shuffle(this.filterShows()).slice(0, 3);
+    }
 }

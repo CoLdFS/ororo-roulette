@@ -1,9 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>{{title}}</h1>
-  <h5>{{subtitle}}</h5>
-  <h6>{{version}}</h6>
-  <h5><input type="submit" (click)="spin()" value="Крутить!"/></h5>
+    <h1>{{title}}</h1>
+    <h5>{{subtitle}}</h5>
+    <h6>{{version}}</h6>
+    <h5><input type="submit" (click)="spin()" value="Крутить!"/></h5>
     <select multiple [(ngModel)]="selectedJanr" (click)="spin()">
         <option value=' Crime'> Crime</option>
         <option value='Animation'>Анимация</option>
@@ -31,28 +31,30 @@
         <option value='Sci-Fi'>Фантастика</option>
         <option value='Fantasy'>Фэнтези</option>
     </select>
+    <br/>
+    C <input type="text" [(ngModel)]="yearFrom" (change)="spin()"> по <input type="text" (change)="spin()" [(ngModel)]="yearTo" >
 </div>
 <br/>
 <div style="text-align:center">
     <div *ngFor="let show of shows" class="index show">
         <div style="height: 300px;width: 200px " [ngStyle]="{ 'background-image': 'url(' + show.img + ')'}"></div>
         <a class="name" href="{{show.url}}">
-        <div class="show-info">
-            <div class="info">
+            <div class="show-info">
+                <div class="info">
                 <span class="star">
                     Рейтинг <span class="value">{{show.rating}}</span>
                 </span>
-                <span class="cam">
+                    <span class="cam">
                     Год <span class="value">{{show.year}}</span>
                 </span>
-                <br/>
-                <br/>
-                <div class="desc">
-                    <div class="title" [innerHTML]="show.title"></div>
-                    <p>{{show.description}}</p>
+                    <br/>
+                    <br/>
+                    <div class="desc">
+                        <div class="title" [innerHTML]="show.title"></div>
+                        <p>{{show.description}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
         </a>
     </div>
 </div>

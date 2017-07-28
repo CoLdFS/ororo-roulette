@@ -5,31 +5,7 @@
     <h6>{{version}}</h6>
     <h5><input type="submit" (click)="spin()" value="Крутить!"/></h5>
     <select multiple [(ngModel)]="selectedJanr" (click)="spin()">
-        <option value=' Crime'> Crime</option>
-        <option value='Animation'>Анимация</option>
-        <option value='Biography'>Биография</option>
-        <option value='Action'>Боевик</option>
-        <option value='Western'>Вестерн</option>
-        <option value='War'>Военный</option>
-        <option value='Mystery'>Детектив</option>
-        <option value='Documentary'>Документальный</option>
-        <option value='Drama'>Драма</option>
-        <option value='History'>Исторический</option>
-        <option value='Comedy'>Комедия</option>
-        <option value='Crime'>Криминальный</option>
-        <option value='Music'>Музыкальный</option>
-        <option value='Education'>Обучающий</option>
-        <option value='Adventure'>Приключения</option>
-        <option value='Reality-TV'>Реалити Шоу</option>
-        <option value='Romance'>Роман</option>
-        <option value='Family'>Семейный</option>
-        <option value='Sport'>Спорт</option>
-        <option value='Game-Show'>Телеигра</option>
-        <option value='Talk-Show'>Ток Шоу</option>
-        <option value='Thriller'>Триллер</option>
-        <option value='Horror'>Ужасы</option>
-        <option value='Sci-Fi'>Фантастика</option>
-        <option value='Fantasy'>Фэнтези</option>
+        <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
     </select>
     <br/>
     C <input type="text" [(ngModel)]="yearFrom" (change)="spin()"> по <input type="text" (change)="spin()" [(ngModel)]="yearTo" >
@@ -41,12 +17,12 @@
         <a class="name" href="{{show.url}}">
             <div class="show-info">
                 <div class="info">
-                <span class="star">
-                    Рейтинг <span class="value">{{show.rating}}</span>
-                </span>
+                    <span class="star">
+                        Рейтинг <span class="value">{{show.rating}}</span>
+                    </span>
                     <span class="cam">
-                    Год <span class="value">{{show.year}}</span>
-                </span>
+                        Год <span class="value">{{show.year}}</span>
+                    </span>
                     <br/>
                     <br/>
                     <div class="desc">

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ALLSHOWS} from './ororo';
+import {genres} from './genres';
 
 @Component({
     selector: 'app-root',
@@ -11,10 +12,11 @@ export class AppComponent {
     title = 'Ороро рулетка';
     subtitle = 'Если выбирать сериалы самому уже слишком тяжело';
     version = 'Анечка edition';
-    yearFrom = 1700;
+    yearFrom = 1902;
     yearTo = 2018;
     shows = [];
     selectedJanr = [];
+    genres = genres;
 
     constructor() {
         this.spin();
